@@ -15,8 +15,6 @@ _A privacy-first desktop application that uses high-frequency telemetry and loca
 
 <br />
 
-![PulseGrid Dashboard Preview](https://via.placeholder.com/800x450/111827/00ffaa?text=PulseGrid+Dashboard+Screenshot+Here)
-
 </div>
 
 ---
