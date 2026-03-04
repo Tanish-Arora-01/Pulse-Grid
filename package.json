@@ -1,0 +1,101 @@
+{
+  "name": "pulsegrid",
+  "version": "1.0.0",
+  "description": "Real-time AI burnout detection system for developers",
+  "main": "backend/main.js",
+  "homepage": "./",
+  "scripts": {
+    "dev:frontend": "cd frontend && npm run dev",
+    "dev:backend": "cd backend && wait-on http://localhost:5173 && npm start",
+    "dev": "concurrently \"npm run dev:frontend\" \"npm run dev:backend\"",
+    "build:frontend": "cd frontend && npm run build",
+    "dist": "npm run build:frontend && electron-builder --win --publish never"
+  },
+  "keywords": [
+    "burnout",
+    "monitoring",
+    "ai",
+    "productivity"
+  ],
+  "author": "PulseGrid",
+  "license": "ISC",
+  "type": "commonjs",
+  "devDependencies": {
+    "concurrently": "^9.2.1",
+    "electron": "^40.6.1",
+    "electron-builder": "^26.8.1",
+    "wait-on": "^9.0.4"
+  },
+  "build": {
+    "appId": "com.pulsegrid.app",
+    "npmRebuild": false,
+    "icon": "assets/logo.ico",
+    "productName": "PulseGrid",
+    "directories": {
+      "buildResources": "assets"
+    },
+    "files": [
+      "backend/main.js",
+      "backend/preload.js",
+      "backend/database.js",
+      "backend/model/**/*",
+      "frontend/dist/**/*",
+      "package.json",
+      "node_modules/**/*"
+    ],
+    "extraResources": [
+      {
+        "from": "backend/model",
+        "to": "model",
+        "filter": [
+          "**/*"
+        ]
+      },
+      {
+        "from": "dist/analytics-engine.exe",
+        "to": "model",
+        "filter": [
+          "analytics-engine.exe"
+        ]
+      },
+      {
+        "from": "assets",
+        "to": "assets",
+        "filter": [
+          "**/*"
+        ]
+      }
+    ],
+    "asarUnpack": [
+      "**/*.node"
+    ],
+    "win": {
+      "target": [
+        {
+          "target": "nsis",
+          "arch": [
+            "x64"
+          ]
+        },
+        {
+          "target": "portable",
+          "arch": [
+            "x64"
+          ]
+        }
+      ]
+    },
+    "nsis": {
+      "oneClick": false,
+      "allowToChangeInstallationDirectory": true,
+      "createDesktopShortcut": true,
+      "createStartMenuShortcut": true,
+      "shortcutName": "PulseGrid"
+    }
+  },
+  "dependencies": {
+    "active-win": "^8.2.1",
+    "better-sqlite3": "^12.6.2",
+    "uiohook-napi": "^1.5.4"
+  }
+}

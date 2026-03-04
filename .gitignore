@@ -1,0 +1,33 @@
+# --- Node Modules ---
+node_modules/
+**/node_modules/
+
+# --- Electron Build Output ---
+dist/
+out/
+build/
+win-unpacked/
+*.exe
+*.blockmap
+*.yml
+!docker-compose.yml
+!github/workflows/*.yml
+
+# --- Python & ML Artifacts ---
+**/__pycache__/
+backend/model/build/
+backend/model/dist/
+backend/model/*.exe
+
+# --- Databases & Environment ---
+*.db
+*.sqlite
+*.sqlite3
+.env
+.env.local
+
+# --- Python & PyInstaller Artifacts ---
+**/__pycache__/
+backend/model/build/
+backend/model/dist/
+*.exe
